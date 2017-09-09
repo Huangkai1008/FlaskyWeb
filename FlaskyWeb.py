@@ -1,4 +1,5 @@
 from flask import Flask
+from flask_script import Manager
 # from flask import request
 # from flask import make_response
 # from flask import redirect
@@ -43,5 +44,11 @@ def user(name):
 # def index():
 #     return redirect('http://www.example.com')
 
+# Flask_Script
+manager = Manager(app)
+
 if __name__ == '__main__':
     app.run()
+
+if __name__ == '__main__':
+    manager.run()
