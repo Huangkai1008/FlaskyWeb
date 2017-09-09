@@ -1,6 +1,8 @@
 from flask import Flask, render_template
 from flask_script import Manager
 from flask_bootstrap import Bootstrap
+from flask_moment import Moment
+from datetime import datetime
 # from flask import request
 # from flask import make_response
 # from flask import redirect
@@ -11,7 +13,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('index.html', current_time=datetime.utcnow())
 
 
 @app.route('/user/<name>')
@@ -62,6 +64,9 @@ manager = Manager(app)
 
 # Flask_BootStrap
 bootstrap = Bootstrap(app)
+
+# Flask_Moment
+moment = Moment(app)
 
 if __name__ == '__main__':
     app.run()
