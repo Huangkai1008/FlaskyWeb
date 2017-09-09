@@ -1,5 +1,6 @@
-from flask import Flask
+from flask import Flask, render_template
 from flask_script import Manager
+from flask_bootstrap import Bootstrap
 # from flask import request
 # from flask import make_response
 # from flask import redirect
@@ -10,12 +11,12 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return '<h1>Hello World!</h1>'
+    return render_template('index.html')
 
 
 @app.route('/user/<name>')
 def user(name):
-    return '<h1>Hello, %s!</h1>' % name
+    return render_template('user.html', name=name)
 
 
 # # 请求上下文
@@ -47,8 +48,12 @@ def user(name):
 # Flask_Script
 manager = Manager(app)
 
+# Flask_BootStrap
+bootstrap = Bootstrap(app)
+
 if __name__ == '__main__':
     app.run()
 
 if __name__ == '__main__':
     manager.run()
+
