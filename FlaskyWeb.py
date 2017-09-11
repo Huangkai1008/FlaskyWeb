@@ -8,6 +8,7 @@ from wtforms import StringField, SubmitField
 from wtforms.validators import DataRequired
 import os
 from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate, MigrateCommand
 
 # from flask import request
 # from flask import make_response
@@ -143,6 +144,9 @@ def make_shell_context():
 
 
 manager.add_command("Shell", Shell(make_context=make_shell_context()))
+
+migrate = Migrate(app, db)
+manager.add_command('db', MigrateCommand)
 
 if __name__ == '__main__':
     app.run()
