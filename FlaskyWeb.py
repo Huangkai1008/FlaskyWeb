@@ -9,6 +9,7 @@ from wtforms.validators import DataRequired
 import os
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate, MigrateCommand
+from flask_mail import Mail
 
 # from flask import request
 # from flask import make_response
@@ -24,6 +25,12 @@ app.config['SECRET_KEY'] = 'hard to guess string'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:177036@localhost:3306/FlaskyWeb?charset=utf8'
 app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = True
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
+# 设置qq邮箱
+app.config['MAIL_SERVER'] = 'smtp.qq.com'
+app.config['MAIL_PORT'] = 25
+app.config['MAIL_USE_TLS'] = True
+app.config['MAIL_USERNAME'] = os.environ.get('MAIL_USERNAME')
+app.config['MAIL_PASSWORD'] = os.environ.get('MAIL_PASSWORD')
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -136,6 +143,9 @@ bootstrap = Bootstrap(app)
 
 # Flask_Moment
 moment = Moment(app)
+
+# Flask_Mail
+mail = Mail(app)
 
 
 # 集成python shell
